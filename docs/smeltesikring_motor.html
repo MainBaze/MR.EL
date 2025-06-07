@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8">
+    <title>Smeltesikring</title>
+    <link rel="stylesheet" href="css/css.css">
+    <!-- jQuery (if you use the jQuery version) -->
+    <script src="js/jquery-3.6.0.js"></script>
+    <!-- sidebar + component loader -->
+    <script src="js/scriptgeneral.js" defer></script>
+    <!-- your existing scripts for formulas & popups -->
+    <script src="js/script.js" defer></script>
+  </head>
+  
+<body>
+ <!-- ===== Sidebar markup ===== -->
+ <div id="sidebar-container"></div>
+
+ <br>
+  <h1>Gruppe med smeltesikring & motorværn</h1>
+
+  <p class="beskrivelse">Til f.eks. vandvarmer, lys eller stik. Smeltesikring til KB og motorværn til OB.</p>
+
+  <img src="images/smeltesikring_motor.png" alt="Diagram" style="max-width:60%; height:auto;">
+
+<div class="question-block">
+
+  <!--<p style="color: red;"> TODO </p>-->
+  <br>
+<h2>1. Aflæs eller beregn strømmen IB</h2>
+<p class="beskrivelse">
+  1f: P / (230V • Cosφ)  
+  2f: P / (400V • Cosφ)  
+  3f: P / (400V • √3 • Cosφ)
+</p>
+<label>Fasevalg:
+  <select id="fasevalg">
+    <option value="1f">1-faset</option>
+    <option value="2f">2-faset</option>
+    <option value="3f">3-faset</option>
+  </select>
+</label><br>
+<p class="beskrivelse">Indsæt kendte værdier for at finde strømforbrug:</p>
+<label>P [W]: <input id="p" type="number" step="any"></label>
+<label>IB [A]: <input id="ib_input" type="number" step="any"></label>
+<label>Cosφ: <input id="cosphi" type="number" step="any"></label>
+<p>IB = <output id="ib"></output> A</p>
+<p>!!! Måske startstrøm er relevant til sikringstørrelse.</p>
+</div>
+<br>
+
+<div class="question-block">
+<h2>
+  2. Valg af mortorværn og kontaktor
+  <span class="popupToggle" data-image="images/magnetbetjentmotorvaernogkontakter.png" title="Vis billede" style="cursor: pointer;">📄</span>
+</h2>
+<p class="beskrivelse">In ≥ IB</p>
+<label>Type:
+  <select id="motorvaernType">
+    <option value="magnetbetjent">Magnetbetjent</option>
+    <option value="haandbejtent">Håndbetjent</option>
+  </select>
+</label>
+<br><br>
+<p>Motorværn:</p>
+<label>Model: <input id="motorvaern_type" type="text"></label>
+<p>Område/Indstilling:</p>
+
+<div class="arrow">
+  <label for="motorvaern_indstilling_min">Min [A]</label><br>
+  <input id="motorvaern_indstilling_min" type="number">
+</div>
+
+<div class="arrow">
+  <label for="motorvaern_indstilling_sat">Sat til [A]</label><br>
+  <input id="motorvaern_indstilling_sat" type="number">
+  <span>▲</span>
+</div>
+
+<div class="arrow">
+  <label for="motorvaern_indstilling_maks">Maks [A]</label><br>
+  <input id="motorvaern_indstilling_maks" type="number">
+</div>
+
+<br><br>
+<label>Kontaktor model: <input id="kontaktor_type" type="text"></label>
+<label>Sikring [A]: <input id="in" type="number"></label>
+
+<div class="question-block">
+<h2>
+  3. Valg af gruppeafbryder
+  <span class="popupToggle" data-image="images/afbryderesikringer.png" title="Vis billede" style="cursor: pointer;">📄</span>
+</h2>
+<p class="beskrivelse">Ie1 ≥ IB</p>
+<label>Model: <input id="model_ie1" type="text"></label>
+<label>Ie1 [A]: <input id="ie1" type="number"></label>
+<br><br>
+</div>
+
+<div class="question-block">
+<h2>
+  4. Valg af sikkerhedsafbryder
+  <span class="popupToggle" data-image="images/afbryderesikringer.png" title="Vis billede" style="cursor: pointer;">📄</span>
+</h2>
+<p class="beskrivelse">Ie2 ≥ IB</p>
+<label>Model: <input id="model_ie2" type="text"></label>
+<label>Ie2 [A]: <input id="ie2" type="number"></label>
+<br><br>
+</div>
+
+<div class="question-block">
+<h2>
+  5. Installationsmetode / Oplæg
+  <span class="popupToggle" data-image="images/oplaeg.png" title="Vis billede" style="cursor: pointer;">📄</span>
+</h2>
+<p class="beskrivelse">Brug værste fællesnævner</p>
+<label class="s1">S1 billede nr: <input id="billede_s1" type="text"></label>
+<label class="s1">Bogstav: <input id="bogstav_s1" type="text"></label><br>
+<label class="s2">S2 billede nr: <input id="billede_s2" type="text"></label>
+<label class="s2">Bogstav: <input id="bogstav_s2" type="text"></label>
+</div>
+
+<!-- Fælles popup-container (placeret én gang i bunden) -->
+<div id="popupContainer" class="popup-hidden">
+  <img id="popupImage" src="" alt="Popup billede">
+</div>
+<br>
+<br>
+
+<div class="question-block">
+<h2>6. Korrektionsfaktorer</h2>
+
+<label class="s1">Temperatur S1 [°C]: <input id="temp_s1" type="number"></label>
+<label class="s1">Kt tabel: <input id="kt_tabel_s1" type="text"></label>
+<label class="s1">Kt: 
+  <span class="emojiKt_s1" style="cursor: pointer;"></span>
+  <input id="kt_s1" type="number" step="any">
+</label><br>
+
+<label class="s2">Temperatur S2 [°C]: <input id="temp_s2" type="number"></label>
+<label class="s2">Kt tabel: <input id="kt_tabel_s2" type="text"></label>
+<label class="s2">Kt:
+  <span class="emojiKt_s2" style="cursor: pointer;"></span>
+  <input id="kt_s2" type="number" step="any">
+</label><br>
+
+<label class="s1">Antal kredse S1: <input id="kredse_s1" type="number"></label>
+<label class="s1">Ks tabel: <input id="ks_tabel_s1" type="text"></label>
+<label class="s1">Ks: 
+  <span class="emojiKs_s1" style="cursor: pointer;"></span>
+  <input id="ks_s1" type="number" step="any">
+</label><br>
+
+<label class="s2">Antal kredse S2: <input id="kredse_s2" type="number"></label>
+<label class="s2">Ks tabel: <input id="ks_tabel_s2" type="text"></label>
+<label class="s2">Ks: 
+  <span class="emojiKs_s2" style="cursor: pointer;"></span>
+  <input id="ks_s2" type="number" step="any">
+</label>
+</div>
+<br>
+<br>
+
+<!-- Punkt 7 -->
+<div class="question-block">
+<h2>7. Beregning af den nødvendige strømværdi</h2>
+
+<p class="beskrivelse">Beregnin af Iz_nødvendig:</p>
+<p class="s1">
+  Iz_nødvendig_S1 = In / (kt • ks) = 
+  <output id="iz_s1"></output> A
+</p>
+<p class="s2">
+  Iz_nødvendig_S2 = In / (kt • ks) = 
+  <output id="iz_s2"></output> A
+</p>
+<br>
+<p class="beskrivelse">Vælg kvadrat der kan føre Iz_nødvendig og skriv kvadratets reele strømværdi:</p>
+
+<!-- S1 -->
+<label class="s1">S1 kabeltype:
+  <select id="cableType_S1">
+    <option value="XLPE_90">XLPE 90°</option>
+    <option value="GUMMI_90">GUMMI 90°</option>
+  </select>
+</label>
+<label class="s1">Iz1 [A]: <input id="iz1" type="number" step="any"></label>
+<label class="s1">S1 [mm²]: <input id="s1" type="number"></label>
+<span class="emojiIz1" style="cursor: pointer;"></span><br>
+
+<!-- S2 -->
+<label class="s2">S2 kabeltype:
+  <select id="cableType_S2">
+    <option value="XLPE_90">XLPE 90°</option>
+    <option value="GUMMI_90">GUMMI 90°</option>
+  </select>
+</label>
+<label class="s2">Iz2 [A]: <input id="iz2" type="number" step="any"></label>
+<label class="s2">S2 [mm²]: <input id="s2" type="number"></label>
+<span class="emojiIz2" style="cursor: pointer;"></span>
+<br><br>
+
+<p class="beskrivelse">Kablets strømværdi taget højde for oplægning, temperatur og samlet fremføring (korrektionsfaktorer): </p>
+<p class="s1">
+  Iz1ts = Iz1 • kt • ks = 
+  <span id="iz1tsInputs"></span>
+  = <output id="iz1ts"></output> A
+</p>
+<p class="s2">
+  Iz2ts = Iz2 • kt • ks = 
+  <span id="iz2tsInputs"></span>
+  = <output id="iz2ts"></output> A
+</p>
+
+
+
+
+</div>
+<br>
+
+<div class="question-block">
+<h2>8. OB-kontrol</h2>
+<p class="beskrivelse">Kontroller IB ≤ In ≤ Izts</p>
+
+<!-- S1 OB-kontrol -->
+<p class="s1">
+  S1 kontrol: 
+  <!-- Vi viser tallene, selve resultatet puttes i <output> -->
+  <output id="ob_s1"></output>
+</p>
+
+<!-- S2 OB-kontrol -->
+<p class="s2">
+  S2 kontrol: 
+  <output id="ob_s2"></output>
+</p>
+</div>
+<br>
+
+<!-- Punkt 9 -->
+<div class="question-block">
+<h2>9. KB-kontrol</h2>
+<p class="beskrivelse">Find Ikmin ved brugsgenstanden</p>
+<label>IkminA [A]: <input id="ikminA" type="number" step="any"></label>
+<p>RA = 230 / IkminA = <output id="ra"></output> Ω</p>
+
+<label class="s1">S1 længde [m]: <input id="lgd1" type="number"></label>
+<label class="s1">S1 kvadrat [mm²]: <input id="s1" type="number"></label>
+<p class="s1">RLS1 = 0.0175 • 2 • lgd1 / S1 = <output id="rls1"></output> Ω</p>
+
+<label class="s2">S2 længde [m]: <input id="lgd2" type="number"></label>
+<label class="s2">S2 kvadrat [mm²]: <input id="s2" type="number"></label>
+<p class="s2">RLS2 = 0.0175 • 2 • lgd2 / S2 = <output id="rls2"></output> Ω</p>
+
+<p>ΣR = RA + ((RLS1 + RLS2) • 1.5) = <output id="r_total"></output> Ω</p>
+<p>IkminB = 230 / ΣR = <output id="ikminB"></output> A</p>
+</div>
+<br>
+
+<div class="question-block">
+<h2>10. Kortslutningskontrol (tK &gt; tS)</h2>
+<p>
+  K [default=143]:
+  <span class="popupToggle" data-image="images/kvaerdi.png" style="cursor: pointer;">📄</span>
+  = <input id="kvalue" value="143" type="number" step="any">
+</p>
+<p class="s1">tK S1 = (K • S1 / IkminB)² = <output id="tk1"></output> sekunder</p>
+<p class="s2">tK S2 = (K • S2 / IkminB)² = <output id="tk2"></output> sekunder</p>
+
+<!-- tS med emoji-link -->
+<p>
+  Aflæs tS 
+  <span class="popupToggle" data-image="images/NeozedKurve.png" style="cursor: pointer;">📄</span>
+  = <input id="ts" type="number" step="any"> sekunder
+</p>
+
+<!-- Resultater -->
+<p class="s1">
+  Tjek S1: <output id="tk_s1_check"></output>
+</p>
+<p class="s2">
+  Tjek S2: <output id="tk_s2_check"></output>
+</p>
+</div>
+<br>
+
+<div class="question-block">
+<h2>11. Spændingsfald</h2>
+<label>ρ [default=0.0175]:
+  <input id="rho" type="number" value="0.0175" step="any">
+</label>
+<p class="beskrivelse">Formler er opdateret efter 1f, 2f eller 3f valg.</p>
+<p class="s1 formula" id="duf_formula_s1"><!-- udfyldes i JS --></p>
+<p class="s2 formula" id="duf_formula_s2"><!-- udfyldes i JS --></p>
+<p class="formula"    id="du_percent_formula"><!-- udfyldes i JS --></p>
+</div>
+<br>
+<br>
+
+<div class="question-block">
+  <h2>12. Opmærkning</h2>
+  <label>Gruppeafbryder (Tilhørsforhold): <input id="gruppe_tilh" type="text"></label><br>
+  <label>Max: <input id="gruppe_max" type="text"></label><br>
+  <label>Kabelnummer: <input id="kabel_nr" type="text"></label><br>
+  <label>PE-leder i tavlen: <input id="pe_leder" type="text"></label>
+</div>
+  <br>
+  <br>
+
+<!-- Reset Knap -->
+  <hr>
+  <button id="resetAll" style="background-color: #cc4b46;">🔄 NULSTIL FELTER</button>
+  <button id="printBtn" style="background-color: #35b851;">🖨️ Print til PDF</button>
+  <p><br></p>
+  
+
+<!-- Fælles Popup skjult til alle billeder -->
+<div id="popupContainer" class="popup-hidden">
+  <img id="popupImage" src="" alt="Popup billede">
+</div>
+
+
+</body>
+</html>

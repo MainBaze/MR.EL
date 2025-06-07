@@ -1,7 +1,7 @@
 // js/scriptgeneral.js
 $(function(){
   // 1) Inject the sidebar markup and initialize toggling
-  $('#sidebar-container').load('components/sidebar.html', function(){
+  $('#sidebar-container').load('/components/sidebar.html', function(){
     initSidebarAnimations();
   });
 
