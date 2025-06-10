@@ -1,0 +1,92 @@
+[
+  {
+    "omgivelsestemperatur": "10",
+    "PVC": "1.22",
+    "XLPE": "1.15"
+  },
+  {
+    "omgivelsestemperatur": "15",
+    "PVC": "1.17",
+    "XLPE": "1.12"
+  },
+  {
+    "omgivelsestemperatur": "20",
+    "PVC": "1.12",
+    "XLPE": "1.08"
+  },
+  {
+    "omgivelsestemperatur": "25",
+    "PVC": "1.06",
+    "XLPE": "1.04"
+  },
+  {
+    "omgivelsestemperatur": "30",
+    "PVC": "1",
+    "XLPE": "1"
+  },
+  {
+    "omgivelsestemperatur": "35",
+    "PVC": "0.94",
+    "XLPE": "0.96"
+  },
+  {
+    "omgivelsestemperatur": "40",
+    "PVC": "0.87",
+    "XLPE": "0.91"
+  },
+  {
+    "omgivelsestemperatur": "45",
+    "PVC": "0.79",
+    "XLPE": "0.87"
+  },
+  {
+    "omgivelsestemperatur": "50",
+    "PVC": "0.71",
+    "XLPE": "0.82"
+  },
+  {
+    "omgivelsestemperatur": "55",
+    "PVC": "0.61",
+    "XLPE": "0.76"
+  },
+  {
+    "omgivelsestemperatur": "60",
+    "PVC": "0.5",
+    "XLPE": "0.71"
+  },
+  {
+    "omgivelsestemperatur": "65",
+    "PVC": "",
+    "XLPE": "0.65"
+  },
+  {
+    "omgivelsestemperatur": "70",
+    "PVC": "",
+    "XLPE": "0.58"
+  },
+  {
+    "omgivelsestemperatur": "75",
+    "PVC": "",
+    "XLPE": "0.5"
+  },
+  {
+    "omgivelsestemperatur": "80",
+    "PVC": "",
+    "XLPE": "0.41"
+  },
+  {
+    "omgivelsestemperatur": "85",
+    "PVC": "",
+    "XLPE": ""
+  },
+  {
+    "omgivelsestemperatur": "90",
+    "PVC": "",
+    "XLPE": ""
+  },
+  {
+    "omgivelsestemperatur": "95",
+    "PVC": "",
+    "XLPE": ""
+  }
+]

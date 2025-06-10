@@ -1,0 +1,5 @@
+-> PDF/Image
+-> Excel (Get Data from PDF, etc.. eller billede)
+-> Kun headers on data i tabel
+-> Gem som CSV UTF-8
+-> Converter til JSON (placer csv fil i CSVtoJSON mappe og kør python script)

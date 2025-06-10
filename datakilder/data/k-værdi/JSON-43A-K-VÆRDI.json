@@ -1,0 +1,14 @@
+[
+  {
+    "materiale": "kopper",
+    "PVC": "115",
+    "XLPE": "143",
+    "GUMMI": "141"
+  },
+  {
+    "materiale": "aluminium",
+    "PVC": "76",
+    "XLPE": "94",
+    "GUMMI": "93"
+  }
+]
