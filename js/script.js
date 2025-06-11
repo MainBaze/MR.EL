@@ -401,12 +401,12 @@ function updateFieldsForSide(bog, side) {
   // KS
   if (["A1","A2","B1","B2","C"].includes(bog)) {
     ksTab.value = "B.52.17";
-    eKs.innerHTML = `<span class="popupToggle" data-image="billeder/B.52.17.png">📄</span>`;
+    eKs.innerHTML = `<span class="popupToggle" data-image="datakilder\data\korrektionsfaktor-samlet-fremføring\KILDE-BILLEDE-B.52.17-SAMLET-FREMFØRING.png">📄</span>`;
   } else if (bog === "E") {
     ksTab.value = "B.52.17 ELLER B.52.20";
-    eKs.innerHTML = `<span class="popupToggle" data-image="billeder/B.52.17.png">📄</span>`;
+    eKs.innerHTML = `<span class="popupToggle" data-image="datakilder\data\korrektionsfaktor-samlet-fremføring\KILDE-BILLEDE-B.52.17-SAMLET-FREMFØRING.png">📄</span>`;
   } else {
-    const map = { D:"B.52.19", D2:"B.52.19", F:"B.52.21", G:"PAS (60-3-64)" };
+    const map = { D:"SE 60-3-64", D2:"SE 60-3-64", F:"SE 60-3-64", G:"SE 60-3-64" };
     ksTab.value = map[bog] || "";
     eKs.innerHTML = `<span class="popupToggle" data-image="billeder/TBD.png">📄</span>`;
   }
