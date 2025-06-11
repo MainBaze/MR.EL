@@ -275,5 +275,5 @@ button {
   /* all three declarations cover different browsers */
   page-break-inside: avoid;    /* legacy */
   break-inside: avoid-column;  /* multi-column flows */
-  break-inside: avoid-page;    /* modern spec */
+  break-inside: avoid-page;    /* modern spec */}
 }

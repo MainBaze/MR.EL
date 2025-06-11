@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "kvalue", "ts", "rho",
     "gruppe_tilh", "gruppe_max",
     "kabel_nr", "pe_leder",
-    "kabel_materiale_s1", "kabel_materiale_s2"
+    "materiale_s1", "materiale_s2"
   ];
 
   // Load/save fra localStorage
@@ -40,6 +40,15 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   });
+
+// --- Korrektionsfaktor temperatur data ---
+  fetch('datakilder/data/korrektionsfaktor-temperatur/JSON-B.52.14-KORREKTIONSFAKTOR-TEMPERATUR.json')
+    .then(r => r.json())
+    .then(d => {
+      ktTempData = d;
+      updateTempKt('s1');
+      updateTempKt('s2');
+    });
 
   // --- 2) Sync af mm² felter (punkt 7 + 9) ---
   const syncFields = selector => {
@@ -113,6 +122,10 @@ document.getElementById('printBtn').addEventListener('click', () => {
   popupImage.addEventListener("click", e => e.stopPropagation());
 
   // --- 5) Dynamiske lyttere KT/KS + Iz-emoji ---
+  document.getElementById('temp_s1')?.addEventListener('input', () => updateTempKt('s1'));
+  document.getElementById('temp_s2')?.addEventListener('input', () => updateTempKt('s2'));
+  document.getElementById('materiale_s1')?.addEventListener('change', () => updateTempKt('s1'));
+  document.getElementById('materiale_s2')?.addEventListener('change', () => updateTempKt('s2'));
   document.getElementById("bogstav_s1")?.addEventListener("input", () => {
     updateKorrektionsfaktorer();
     updateIzEmojis();
@@ -126,6 +139,8 @@ document.getElementById('printBtn').addEventListener('click', () => {
   // Første beregning
   calculateAll();
   updateKorrektionsfaktorer();
+  updateTempKt('s1');
+  updateTempKt('s2');
   updateIzEmojis();
 });
 
@@ -439,4 +454,20 @@ function setIzEmoji(bog, fase, cls) {
   tgt.innerHTML = img
     ? `<span class="popupToggle" data-image="${img}">📄</span>`
     : "";
+
+}
+function updateTempKt(side) {
+  if (!ktTempData) return;
+  const tEl  = document.getElementById(`temp_${side}`);
+  const mEl  = document.getElementById(`materiale_${side}`);
+  const ktEl = document.getElementById(`kt_${side}`);
+  if (!tEl || !mEl || !ktEl) return;
+  const temp = parseFloat(tEl.value);
+  const mat  = mEl.value.toUpperCase();
+  if (isNaN(temp) || !mat) { ktEl.value = ""; return; }
+  let row = ktTempData.find(r => parseFloat(r.omgivelsestemperatur) >= temp);
+  if (!row) row = ktTempData[ktTempData.length - 1];
+  const val = parseFloat(row[mat]);
+  ktEl.value = isNaN(val) ? "" : val;
+  calculateAll();
 }
