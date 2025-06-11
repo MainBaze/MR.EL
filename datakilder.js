@@ -30,7 +30,7 @@ const datasets = [
   {
     title: "Oplæg",
     kilde: "datakilder/data/oplæg/KILDE-BILLEDE-OPLÆG.png",
-    note: "Kun billede tilgængeligt"
+    note: "Test"
   },
   {
     title: "Sikkerheds CEE gruppe-afbrydere",
@@ -87,6 +87,33 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+  const popupContainer = document.getElementById('popupContainer');
+  const popupImage = document.getElementById('popupImage');
+
+  list.addEventListener('click', e => {
+    const tgt = e.target;
+    if (tgt.classList.contains('popupToggle') && tgt.dataset.image) {
+      popupImage.src = tgt.dataset.image;
+      popupContainer.classList.remove('popup-hidden');
+      popupContainer.style.display = 'flex';
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      popupContainer.classList.add('popup-hidden');
+      popupContainer.style.display = 'none';
+    }
+  });
+
+  popupContainer.addEventListener('click', () => {
+    popupContainer.classList.add('popup-hidden');
+    popupContainer.style.display = 'none';
+  });
+
+  popupImage.addEventListener('click', e => e.stopPropagation());
+
+
 function buildTableHTML(data) {
   if (!data.length) return '<table></table>';
   const headers = Object.keys(data[0]);
@@ -119,7 +146,8 @@ function openTableWindow(jsonFile) {
     .then(data => {
       const tableHTML = buildTableHTML(data);
       const win = window.open('', '', 'width=800,height=600');
-      win.document.write(`<!DOCTYPE html><html lang="da"><head><meta charset="UTF-8"><title>Tabel</title><style>body{font-family:sans-serif;margin:1rem;}#closeBtn{position:fixed;top:0.5rem;right:0.5rem;font-size:1.5rem;background:none;border:none;cursor:pointer;}table{border-collapse:collapse;width:100%;}th,td{border-right:1px solid #ccc;padding:0.25rem 0.5rem;}th:first-child,td:first-child{border-left:1px solid #ccc;}tr:not(:last-child) td{border-bottom:1px solid #ccc;}</style></head><body><button id="closeBtn">×</button>${tableHTML}<script>document.getElementById('closeBtn').addEventListener('click',()=>window.close());document.addEventListener('keydown',e=>{if(e.key==='Escape')window.close();});</script></body></html>`);
+      win.document.write(`<!DOCTYPE html><html lang="da"><head><meta charset="UTF-8"><title>Tabel</title><style>body{font-family:sans-serif;margin:1rem;}#closeBtn{position:fixed;top:0.5rem;right:0.5rem;font-size:1.5rem;background:none;border:none;cursor:pointer;}table{border-collapse:collapse;width:100%;table-layout:fixed;}th,td{border-right:1px solid #ccc;padding:0.25rem 0.5rem;min-width:80px;}th:first-child,td:first-child{border-left:1px solid #ccc;}tr:not(:last-child) td{border-bottom:1px solid #ccc;}</style></head><body><button id="closeBtn">×</button>${tableHTML}<script>document.getElementById('closeBtn').addEventListener('click',()=>window.close());document.addEventListener('keydown',e=>{if(e.key==='Escape')window.close();});</script></body></html>`);
       win.document.close();
+      win.addEventListener('blur', () => { if (!win.closed) win.close(); });
     });
 }

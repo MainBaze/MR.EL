@@ -186,14 +186,8 @@ button {
 
 
 
-#dataList {
-  list-style: none;
-  margin-top: 1rem;
-  padding-left: 0;
-}
-
 #dataList li {
-  margin: 0.25rem 0;
+  margin: 0.5rem 0;
 }
 
 #dataList li::before {
@@ -208,12 +202,20 @@ button {
 }
 
 .data-link {
+  display: inline-block;
   margin-right: 1.5rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid #0376ea;
+  border-radius: 4px;
+  background: #fff;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .data-link:hover {
   color: #0376ea;
+  background: #0376ea;
+  color: #fff;
 }
 
 .note {
