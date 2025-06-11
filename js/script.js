@@ -376,22 +376,22 @@ function updateFieldsForSide(bog, side) {
   // KT
   if (["A1","A2","B1","B2","C","E","F","G"].includes(bog)) {
     ktTab.value = "B.52.14";
-    eKt.innerHTML = `<span class="popupToggle" data-image="images/B.52.14.png">📄</span>`;
+    eKt.innerHTML = `<span class="popupToggle" data-image="billeder/B.52.14.png">📄</span>`;
   } else {
     ktTab.value = "B.52.15 (60-3-64)";
-    eKt.innerHTML = `<span class="popupToggle" data-image="images/TBD.png">📄</span>`;
+    eKt.innerHTML = `<span class="popupToggle" data-image="billeder/TBD.png">📄</span>`;
   }
   // KS
   if (["A1","A2","B1","B2","C"].includes(bog)) {
     ksTab.value = "B.52.17";
-    eKs.innerHTML = `<span class="popupToggle" data-image="images/B.52.17.png">📄</span>`;
+    eKs.innerHTML = `<span class="popupToggle" data-image="billeder/B.52.17.png">📄</span>`;
   } else if (bog === "E") {
     ksTab.value = "B.52.17 ELLER B.52.20";
-    eKs.innerHTML = `<span class="popupToggle" data-image="images/B.52.17.png">📄</span>`;
+    eKs.innerHTML = `<span class="popupToggle" data-image="billeder/B.52.17.png">📄</span>`;
   } else {
     const map = { D:"B.52.19", D2:"B.52.19", F:"B.52.21", G:"PAS (60-3-64)" };
     ksTab.value = map[bog] || "";
-    eKs.innerHTML = `<span class="popupToggle" data-image="images/TBD.png">📄</span>`;
+    eKs.innerHTML = `<span class="popupToggle" data-image="billeder/TBD.png">📄</span>`;
   }
 }
 
@@ -416,7 +416,7 @@ function setIzEmoji(bog, fase, cls) {
 
   // override for GUMMI_90
   if (cableType === "GUMMI_90") {
-    img = "images/3fgummistroemvaerdi.png";
+    img = "billeder/3fgummistroemvaerdi.png";
 
   } else {
     // original XLPE logic
@@ -424,13 +424,13 @@ function setIzEmoji(bog, fase, cls) {
     const high = ["E","F","G"];
 
     if (fase === "1f" || fase === "2f") {
-      img = low.includes(bog)   ? "images/B.52.3.png"
-          : high.includes(bog)  ? "images/B.52.12.png"
+      img = low.includes(bog)   ? "billeder/B.52.3.png"
+          : high.includes(bog)  ? "billeder/B.52.12.png"
           : "";
     }
     else if (fase === "3f") {
-      img = low.includes(bog)   ? "images/B.52.5.png"
-          : high.includes(bog)  ? "images/B.52.12.png"
+      img = low.includes(bog)   ? "billeder/B.52.5.png"
+          : high.includes(bog)  ? "billeder/B.52.12.png"
           : "";
     }
   }
