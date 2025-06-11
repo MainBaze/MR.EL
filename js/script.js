@@ -1,5 +1,7 @@
 // script.js
 
+let ktTempData = null;
+
 document.addEventListener("DOMContentLoaded", () => {
   // --- 1) Felter til localStorage ---
   const inputIDs = [
