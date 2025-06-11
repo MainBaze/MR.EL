@@ -184,6 +184,45 @@ button {
   font-size: 18px;
 }
 
+
+
+#dataList {
+  list-style: none;
+  margin-top: 1rem;
+  padding-left: 0;
+}
+
+#dataList li {
+  margin: 0.25rem 0;
+}
+
+#dataList li::before {
+  content: '📄';
+  margin-right: 0.5rem;
+}
+
+
+.data-title {
+  font-weight: bold;
+  margin-right: 1.5rem;
+}
+
+.data-link {
+  margin-right: 1.5rem;
+  cursor: pointer;
+}
+
+.data-link:hover {
+  color: #0376ea;
+}
+
+.note {
+  text-decoration: underline dotted;
+  cursor: help;
+}
+
+
+
 @page {
   margin: 2cm;
 }
@@ -230,42 +269,4 @@ button {
   page-break-inside: avoid;    /* legacy */
   break-inside: avoid-column;  /* multi-column flows */
   break-inside: avoid-page;    /* modern spec */
-}
-
-
-
-#dataList {
-  list-style: none;
-  margin-top: 1rem;
-  padding-left: 0;
-}
-
-#dataList li {
-  margin: 0.25rem 0;
-}
-
-#dataList li::before {
-  content: '📄';
-  margin-right: 0.5rem;
-}
-
-
-.data-title {
-  font-weight: bold;
-  margin-right: 1.5rem;
-}
-
-.data-link {
-  margin-right: 1.5rem;
-  cursor: pointer;
-}
-
-.data-link:hover {
-  color: #0376ea;
-}
-
-.note {
-  text-decoration: underline dotted;
-  cursor: help;
-}
 }
