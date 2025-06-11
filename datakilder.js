@@ -1,11 +1,13 @@
 const datasets = [
   {
     title: "DO1-DO2-DO3 sikringskurve",
-    kilde: "datakilder/data/do1-do2-do3-sikringskurve/KILDE-BILLEDE-DO1-DO2-DO3-SIKRINGSKURVE-IKMIN.png"
+    kilde: "datakilder/data/do1-do2-do3-sikringskurve/DO1-DO2-DO3-SIKRINGSKURVE-IKMIN-ORIGINAL.png",
+    note: "Denne data er producent-baseret"
   },
   {
     title: "Gummi kabel",
     kilde: "datakilder/data/gummi-kabel/BILLEDE-XTREM-H07RN-F-450-750-V.png",
+    note: "Denne data er producent-baseret",
     table: "datakilder/data/gummi-kabel/JSON-XTREM-H07RN-F-450-750-V.json"
   },
   {
@@ -15,6 +17,7 @@ const datasets = [
   },
   {
     title: "Kontaktor AC1 ohmsk",
+    note: "Denne data er producent-baseret",
     kilde: "datakilder/data/kontaktor-ac1-ohmsk/KONTAKTOR-AC1-OHMSK.png"
   },
   {
@@ -29,19 +32,22 @@ const datasets = [
   },
   {
     title: "Oplæg",
+    note: "Der findes flere tabeller på avancerede oplæg i DS 60.3.64",
     kilde: "datakilder/data/oplæg/KILDE-BILLEDE-OPLÆG.png",
-    note: "Test"
   },
   {
     title: "Sikkerheds CEE gruppe-afbrydere",
+    note: "Foreslag",
     kilde: "datakilder/data/sikkerheds-cee-gruppe-afbrydere/KILDE-BILLEDE-SIKKERDS-CEE-GRUPPE-AFBRYDERE.png"
   },
   {
     title: "Smeltesikringer oversigt",
+    note: "Oversigt over populære typer af smeltesikringer",
     kilde: "datakilder/data/smeltesikringer-oversigt/KILDE-BILLEDE-SMELTESIKRINGER-OVERSIGT.png"
   },
   {
     title: "Thermorelæ og kontaktor motor",
+    note: "Denne data er producent-baseret",
     kilde: "datakilder/data/thermorelæ-og-kontaktor-motor/KILDE-BILLEDE-CI6-CI50-DANFOSS.png"
   },
   {
@@ -85,6 +91,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     list.appendChild(li);
   });
+
+  // --- Popup-billeder ---
+  const popupContainer = document.getElementById('popupContainer');
+  const popupImage = document.getElementById('popupImage');
+
+  document.addEventListener('click', e => {
+    const tgt = e.target;
+    if (tgt.classList.contains('popupToggle') && tgt.dataset.image) {
+      popupImage.src = tgt.dataset.image;
+      popupContainer.classList.remove('popup-hidden');
+      popupContainer.style.display = 'flex';
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      popupContainer.classList.add('popup-hidden');
+      popupContainer.style.display = 'none';
+    }
+  });
+
+  popupContainer.addEventListener('click', () => {
+    popupContainer.classList.add('popup-hidden');
+    popupContainer.style.display = 'none';
+  });
+
+  popupImage.addEventListener('click', e => e.stopPropagation());
 });
 
 function buildTableHTML(data) {

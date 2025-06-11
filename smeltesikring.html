@@ -36,6 +36,7 @@
 </p>
 <label>Fasevalg:
   <select id="fasevalg">
+    <option value="" selected="selected" hidden="hidden">Vælg</option>
     <option value="1f">1-faset</option>
     <option value="2f">2-faset</option>
     <option value="3f">3-faset</option>
@@ -46,54 +47,157 @@
 <label>IB [A]: <input id="ib_input" type="number" step="any"></label>
 <label>Cosφ: <input id="cosphi" type="number" step="any"></label>
 <p>IB = <output id="ib"></output> A</p>
-<p>!!! Måske startstrøm er relevant til sikringstørrelse.</p>
 </div>
 <br>
 
 <div class="question-block">
 <h2>
   2. Vælg en sikring
-  <span class="popupToggle" data-image="billeder/smeltesikringeroversigt.png" title="Vis billede" style="cursor: pointer;">📄</span>
+  <span class="popupToggle" data-image="datakilder\data\smeltesikringer-oversigt\KILDE-BILLEDE-SMELTESIKRINGER-OVERSIGT.png" title="Vis billede" style="cursor: pointer;">📄</span>
 </h2>
 <p class="beskrivelse">In ≥ IB</p>
-<label>Poler: <input id="sikring_poler" type="text"></label>
-<label>Model: <input id="sikring_type" type="text"></label>
-<label>Sikring [A]: <input id="in" type="number"></label>
+
+<label>Poler:
+  <select id="sikring_poler">
+    <option value="" selected="selected" hidden="hidden">Vælg</option>
+    <option value="1P">1P</option>
+    <option value="1P+N">1P+N</option>
+    <option value="3P">3P</option>
+    <option value="3P+N">3P+N</option>
+  </select>
+</label>
+
+<label>Model:
+  <select id="sikring_type">
+    <option value="" selected="selected" hidden="hidden">Vælg</option>
+    <option value="D01">D01</option>
+    <option value="D02">D02</option>
+    <option value="D03">D03</option>
+    <option value="DIN00">DIN00</option>
+    <option value="DIN1">DIN1</option>
+    <option value="DZ">DZ</option>
+  </select>
+</label>
+
+<label>Sikring [A]:
+  <select id="in" type="number">
+    <option value="" selected="selected" hidden="hidden">Vælg</option>
+    <option value="2">2</option>
+    <option value="4">4</option>
+    <option value="6">6</option>
+    <option value="10">10</option>
+    <option value="13">13</option>
+    <option value="16">16</option>
+    <option value="20">20</option>
+    <option value="25">25</option>
+    <option value="32">32</option>
+    <option value="35">35</option>
+    <option value="40">40</option>
+    <option value="50">50</option>
+    <option value="63">63</option>
+    <option value="80">80</option>
+    <option value="100">100</option>
+  </select>
+</label>
+
+
 </div>
 <br><br>
 
 <div class="question-block">
 <h2>
   3. Valg af gruppeafbryder
-  <span class="popupToggle" data-image="billeder/afbryderesikringer.png" title="Vis billede" style="cursor: pointer;">📄</span>
+  <span class="popupToggle" data-image="datakilder\data\sikkerheds-cee-gruppe-afbrydere\KILDE-BILLEDE-SIKKERDS-CEE-GRUPPE-AFBRYDERE.png" title="Vis billede" style="cursor: pointer;">📄</span>
 </h2>
 <p class="beskrivelse">Ie1 ≥ IB</p>
 <label>Model: <input id="model_ie1" type="text"></label>
-<label>Ie1 [A]: <input id="ie1" type="number"></label>
+<label>Ie1 [A]:
+  <select id="ie1" type="number">
+    <option value="" selected="selected" hidden="hidden">Vælg</option>
+    <option value="2">2</option>
+    <option value="4">4</option>
+    <option value="6">6</option>
+    <option value="10">10</option>
+    <option value="13">13</option>
+    <option value="16">16</option>
+    <option value="20">20</option>
+    <option value="25">25</option>
+    <option value="32">32</option>
+    <option value="35">35</option>
+    <option value="40">40</option>
+    <option value="50">50</option>
+    <option value="63">63</option>
+    <option value="80">80</option>
+    <option value="100">100</option>
+  </select>
+</label>
 <br><br>
 </div>
 
 <div class="question-block">
 <h2>
   4. Valg af sikkerhedsafbryder
-  <span class="popupToggle" data-image="billeder/afbryderesikringer.png" title="Vis billede" style="cursor: pointer;">📄</span>
+  <span class="popupToggle" data-image="datakilder\data\sikkerheds-cee-gruppe-afbrydere\KILDE-BILLEDE-SIKKERDS-CEE-GRUPPE-AFBRYDERE.png" title="Vis billede" style="cursor: pointer;">📄</span>
 </h2>
 <p class="beskrivelse">Ie2 ≥ IB</p>
 <label>Model: <input id="model_ie2" type="text"></label>
-<label>Ie2 [A]: <input id="ie2" type="number"></label>
+<label>Ie2 [A]:
+  <select id="ie2" type="number">
+    <option value="" selected="selected" hidden="hidden">Vælg</option>
+    <option value="2">2</option>
+    <option value="4">4</option>
+    <option value="6">6</option>
+    <option value="10">10</option>
+    <option value="13">13</option>
+    <option value="16">16</option>
+    <option value="20">20</option>
+    <option value="25">25</option>
+    <option value="32">32</option>
+    <option value="35">35</option>
+    <option value="40">40</option>
+    <option value="50">50</option>
+    <option value="63">63</option>
+    <option value="80">80</option>
+    <option value="100">100</option>
+  </select>
+</label>
 <br><br>
 </div>
 
 <div class="question-block">
 <h2>
   5. Installationsmetode / Oplæg
-  <span class="popupToggle" data-image="billeder/oplaeg.png" title="Vis billede" style="cursor: pointer;">📄</span>
+  <span class="popupToggle" data-image="datakilder\data\oplæg\KILDE-BILLEDE-OPLÆG.png" title="Vis billede" style="cursor: pointer;">📄</span>
 </h2>
 <p class="beskrivelse">Brug værste fællesnævner</p>
 <label class="s1">S1 billede nr: <input id="billede_s1" type="text"></label>
-<label class="s1">Bogstav: <input id="bogstav_s1" type="text"></label><br>
+<label class="s1">Bogstav:
+  <select id="bogstav_s1" type="text">
+    <option value="" selected="selected" hidden="hidden">Vælg</option>
+    <option value="A1">A1</option>
+    <option value="B1">B1</option>
+    <option value="B2">B2</option>
+    <option value="C">C</option>
+    <option value="D">D</option>
+    <option value="E">E</option>
+    <option value="F">F</option>
+    <option value="G">G</option>
+  </select>
+</label>
 <label class="s2">S2 billede nr: <input id="billede_s2" type="text"></label>
-<label class="s2">Bogstav: <input id="bogstav_s2" type="text"></label>
+<label class="s1">Bogstav:
+  <select id="bogstav_s2" type="text">
+    <option value="" selected="selected" hidden="hidden">Vælg</option>
+    <option value="A1">A1</option>
+    <option value="B1">B1</option>
+    <option value="B2">B2</option>
+    <option value="C">C</option>
+    <option value="D">D</option>
+    <option value="E">E</option>
+    <option value="F">F</option>
+    <option value="G">G</option>
+  </select>
+</label>
 </div>
 
 <!-- Fælles popup-container (placeret én gang i bunden) -->
