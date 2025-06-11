@@ -29,7 +29,8 @@ const datasets = [
   },
   {
     title: "Oplæg",
-    kilde: "datakilder/data/oplæg/KILDE-BILLEDE-OPLÆG.png"
+    kilde: "datakilder/data/oplæg/KILDE-BILLEDE-OPLÆG.png",
+    note: "Kun billede tilgængeligt"
   },
   {
     title: "Sikkerheds CEE gruppe-afbrydere",
@@ -86,61 +87,39 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-function buildTable(data) {
-  const table = document.createElement('table');
-  if (!data.length) return table;
+function buildTableHTML(data) {
+  if (!data.length) return '<table></table>';
   const headers = Object.keys(data[0]);
-  const thead = document.createElement('thead');
-  const thr = document.createElement('tr');
+  let html = '<table><thead><tr>';
   headers.forEach(h => {
-    const th = document.createElement('th');
-    th.textContent = h;
-    thr.appendChild(th);
+    html += `<th>${h}</th>`;
   });
-  thead.appendChild(thr);
-  table.appendChild(thead);
-
-  const tbody = document.createElement('tbody');
+  html += '</tr></thead><tbody>';
   data.forEach(row => {
-    const tr = document.createElement('tr');
+    html += '<tr>';
     headers.forEach(h => {
-      const td = document.createElement('td');
-      td.textContent = row[h] ?? '';
-      tr.appendChild(td);
+      html += `<td>${row[h] ?? ''}</td>`;
     });
-    tbody.appendChild(tr);
+    html += '</tr>';
   });
-  table.appendChild(tbody);
-  return table;
+  html += '</tbody></table>';
+  return html;
 }
 
 document.addEventListener('click', e => {
   const tgt = e.target;
   if (tgt.classList.contains('tableToggle')) {
-    fetch(tgt.dataset.json)
-      .then(r => r.json())
-      .then(data => {
-        const tablePopup = document.getElementById('tablePopup');
-        const popupTable = document.getElementById('popupTable');
-        popupTable.innerHTML = '';
-        popupTable.appendChild(buildTable(data));
-        tablePopup.classList.remove('popup-hidden');
-        tablePopup.style.display = 'flex';
-      });
+    openTableWindow(tgt.dataset.json);
   }
 });
 
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeTable();
-});
-
-document.getElementById('closeTablePopup')?.addEventListener('click', closeTable);
-document.getElementById('tablePopup')?.addEventListener('click', e => {
-  if (e.target.id === 'tablePopup') closeTable();
-});
-
-function closeTable() {
-  const tp = document.getElementById('tablePopup');
-  tp.classList.add('popup-hidden');
-  tp.style.display = 'none';
+function openTableWindow(jsonFile) {
+  fetch(jsonFile)
+    .then(r => r.json())
+    .then(data => {
+      const tableHTML = buildTableHTML(data);
+      const win = window.open('', '', 'width=800,height=600');
+      win.document.write(`<!DOCTYPE html><html lang="da"><head><meta charset="UTF-8"><title>Tabel</title><style>body{font-family:sans-serif;margin:1rem;}#closeBtn{position:fixed;top:0.5rem;right:0.5rem;font-size:1.5rem;background:none;border:none;cursor:pointer;}table{border-collapse:collapse;width:100%;}th,td{border:1px solid #ccc;padding:0.25rem 0.5rem;}</style></head><body><button id="closeBtn">×</button>${tableHTML}<script>document.getElementById('closeBtn').addEventListener('click',()=>window.close());document.addEventListener('keydown',e=>{if(e.key==='Escape')window.close();});</script></body></html>`);
+      win.document.close();
+    });
 }
