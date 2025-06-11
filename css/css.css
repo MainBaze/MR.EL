@@ -186,6 +186,12 @@ button {
 
 
 
+#dataList {
+  list-style: none;
+  margin-top: 1rem;
+  padding-left: 0;
+}
+
 #dataList li {
   margin: 0.5rem 0;
 }
@@ -213,7 +219,6 @@ button {
 }
 
 .data-link:hover {
-  color: #0376ea;
   background: #0376ea;
   color: #fff;
 }
