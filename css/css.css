@@ -232,4 +232,82 @@ button {
   break-inside: avoid-page;    /* modern spec */
 }
 
+
+
+#tablePopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-y: auto;
+  padding: 2rem 0;
+  z-index: 9999;
+}
+
+#popupTable {
+  max-width: 90%;
+  background: #fff;
+  color: #000;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px white;
+  overflow-x: auto;
+}
+
+#popupContent {
+  position: relative;
+}
+
+#closeTablePopup {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#popupTable table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#popupTable th, #popupTable td {
+  border: 1px solid #ccc;
+  padding: 0.25rem 0.5rem;
+}
+#dataList {
+  list-style: none;
+  margin-top: 1rem;
+  padding-left: 0;
+}
+
+#dataList li {
+  margin: 0.25rem 0;
+}
+
+#dataList li::before {
+  content: '📄';
+  margin-right: 0.5rem;
+}
+
+.data-title {
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.data-link {
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.data-link:hover {
+  color: #0376ea;
+}
 }
