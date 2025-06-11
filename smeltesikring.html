@@ -210,6 +210,13 @@
 <div class="question-block">
 <h2>6. Korrektionsfaktorer</h2>
 
+<label class="s1">Kabel materiale S1:
+  <select id="kabel_materiale_s1" type="text">
+    <option value="" selected="selected" hidden="hidden">Vælg</option>
+    <option value="A1">XLPE</option>
+    <option value="B1">PVC</option>
+  </select>
+</label>
 <label class="s1">Temperatur S1 [°C]: <input id="temp_s1" type="number"></label>
 <label class="s1">Kt tabel: <input id="kt_tabel_s1" type="text"></label>
 <label class="s1">Kt: 
@@ -217,12 +224,19 @@
   <input id="kt_s1" type="number" step="any">
 </label><br>
 
+<label class="s2">Kabel materiale S2:
+  <select id="kabel_materiale_s2" type="text">
+    <option value="" selected="selected" hidden="hidden">Vælg</option>
+    <option value="A1">XLPE</option>
+    <option value="B1">PVC</option>
+  </select>
+</label>
 <label class="s2">Temperatur S2 [°C]: <input id="temp_s2" type="number"></label>
 <label class="s2">Kt tabel: <input id="kt_tabel_s2" type="text"></label>
 <label class="s2">Kt:
   <span class="emojiKt_s2" style="cursor: pointer;"></span>
   <input id="kt_s2" type="number" step="any">
-</label><br>
+</label><br><br>
 
 <label class="s1">Antal kredse S1: <input id="kredse_s1" type="number"></label>
 <label class="s1">Ks tabel: <input id="ks_tabel_s1" type="text"></label>

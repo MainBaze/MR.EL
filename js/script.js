@@ -17,7 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "ikminA", "lgd1", "lgd2", "s1", "s2",
     "kvalue", "ts", "rho",
     "gruppe_tilh", "gruppe_max",
-    "kabel_nr", "pe_leder"
+    "kabel_nr", "pe_leder",
+    "kabel_materiale_s1", "kabel_materiale_s2"
   ];
 
   // Load/save fra localStorage
