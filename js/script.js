@@ -11,16 +11,15 @@ document.addEventListener("DOMContentLoaded", () => {
     "model_ie2", "ie2",
     "billede_s1", "bogstav_s1",
     "billede_s2", "bogstav_s2",
-    "temp_s1", "kt_tabel_s1", "kt_s1",
+    "temp_s1", "materiale_s1", "kt_tabel_s1", "kt_s1",
     "kredse_s1", "ks_tabel_s1", "ks_s1",
-    "temp_s2", "kt_tabel_s2", "kt_s2",
+    "temp_s2", "materiale_s2", "kt_tabel_s2", "kt_s2",
     "kredse_s2", "ks_tabel_s2", "ks_s2",
     "iz1", "iz2",
     "ikminA", "lgd1", "lgd2", "s1", "s2",
     "kvalue", "ts", "rho",
     "gruppe_tilh", "gruppe_max",
-    "kabel_nr", "pe_leder",
-    "materiale_s1", "materiale_s2"
+    "kabel_nr", "pe_leder"
   ];
 
   // Load/save fra localStorage
@@ -458,6 +457,7 @@ function setIzEmoji(bog, fase, cls) {
     : "";
 
 }
+
 function updateTempKt(side) {
   if (!ktTempData) return;
   const tEl  = document.getElementById(`temp_${side}`);
