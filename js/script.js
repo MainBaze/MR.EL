@@ -393,7 +393,7 @@ function updateFieldsForSide(bog, side) {
   // KT
   if (["A1","A2","B1","B2","C","E","F","G"].includes(bog)) {
     ktTab.value = "B.52.14";
-    eKt.innerHTML = `<span class="popupToggle" data-image="billeder/B.52.14.png">📄</span>`;
+    eKt.innerHTML = `<span class="popupToggle" data-image="datakilder/data/korrektionsfaktor-temperatur/KILDE-BILLEDE-B.52.14-KORREKTIONSFAKTOR-TEMPERATUR.png">📄</span>`;
   } else {
     ktTab.value = "B.52.15 (60-3-64)";
     eKt.innerHTML = `<span class="popupToggle" data-image="billeder/TBD.png">📄</span>`;
@@ -401,10 +401,10 @@ function updateFieldsForSide(bog, side) {
   // KS
   if (["A1","A2","B1","B2","C"].includes(bog)) {
     ksTab.value = "B.52.17";
-    eKs.innerHTML = `<span class="popupToggle" data-image="datakilder\data\korrektionsfaktor-samlet-fremføring\KILDE-BILLEDE-B.52.17-SAMLET-FREMFØRING.png">📄</span>`;
+    eKs.innerHTML = `<span class="popupToggle" data-image="datakilder/data/korrektionsfaktor-samlet-fremføring/KILDE-BILLEDE-B.52.17-SAMLET-FREMFØRING.png">📄</span>`;
   } else if (bog === "E") {
     ksTab.value = "B.52.17 ELLER B.52.20";
-    eKs.innerHTML = `<span class="popupToggle" data-image="datakilder\data\korrektionsfaktor-samlet-fremføring\KILDE-BILLEDE-B.52.17-SAMLET-FREMFØRING.png">📄</span>`;
+    eKs.innerHTML = `<span class="popupToggle" data-image="datakilder/data/korrektionsfaktor-samlet-fremføring/KILDE-BILLEDE-B.52.17-SAMLET-FREMFØRING.png">📄</span>`;
   } else {
     const map = { D:"SE 60-3-64", D2:"SE 60-3-64", F:"SE 60-3-64", G:"SE 60-3-64" };
     ksTab.value = map[bog] || "";
@@ -433,7 +433,7 @@ function setIzEmoji(bog, fase, cls) {
 
   // override for GUMMI_90
   if (cableType === "GUMMI_90") {
-    img = "billeder/3fgummistroemvaerdi.png";
+    img = "datakilder/data/gummi-kabel/BILLEDE-XTREM-H07RN-F-450-750-V.png";
 
   } else {
     // original XLPE logic
@@ -441,13 +441,16 @@ function setIzEmoji(bog, fase, cls) {
     const high = ["E","F","G"];
 
     if (fase === "1f" || fase === "2f") {
-      img = low.includes(bog)   ? "billeder/B.52.3.png"
-          : high.includes(bog)  ? "billeder/B.52.12.png"
+      img = low.includes(bog)
+        ? "datakilder/data/xlpe-kabel/BILLEDE-B.52.3-XLPE-90GRADER-1OG2F.png"
+        : high.includes(bog)
+          ? "datakilder/data/xlpe-kabel/BILLEDE-B.52.12-XLPE-90GRADER-INSTALLATION-E-F-G.png"
           : "";
-    }
-    else if (fase === "3f") {
-      img = low.includes(bog)   ? "billeder/B.52.5.png"
-          : high.includes(bog)  ? "billeder/B.52.12.png"
+    } else if (fase === "3f") {
+      img = low.includes(bog)
+        ? "datakilder/data/xlpe-kabel/BILLEDE-B.52.5-XLPE-90GRADER-3F.png"
+        : high.includes(bog)
+          ? "datakilder/data/xlpe-kabel/BILLEDE-B.52.12-XLPE-90GRADER-INSTALLATION-E-F-G.png"
           : "";
     }
   }
